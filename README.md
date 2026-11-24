@@ -2,36 +2,24 @@
 
 Aced's interview-prep plugins for Claude and ChatGPT.
 
-| Plugin | Folder | Marketplace file |
-|---|---|---|
-| Aced for Claude | [`plugins/claude`](plugins/claude) | `.claude-plugin/marketplace.json` |
-| Aced for ChatGPT (and Codex) | [`plugins/chatgpt`](plugins/chatgpt) | `.agents/plugins/marketplace.json` |
-
-## Layout
-
 ```
-.claude-plugin/marketplace.json     Claude marketplace → plugins/claude
-.agents/plugins/marketplace.json    OpenAI marketplace → plugins/chatgpt
-plugins/
-  claude/                           Claude plugin (.claude-plugin/plugin.json, .mcp.json)
-  chatgpt/                          ChatGPT plugin (plugin.json, mcp.json)
-shared/
-  skills/                           skills used by both plugins (source of truth)
-scripts/sync-shared.sh              copies shared/skills into each plugin
+.claude-plugin/marketplace.json     Claude marketplace
+.agents/plugins/marketplace.json    ChatGPT/Codex marketplace
+plugins/claude/                     Claude plugin + Claude-only skills
+plugins/chatgpt/                    ChatGPT plugin + ChatGPT-only skills
+shared/skills/                      skills used by both plugins
 ```
 
-## Shared vs. platform-specific skills
+## How publishing works
 
-Both platforms install a plugin by copying its folder, so a plugin can't reference files
-outside it. Shared skills therefore live in `shared/skills/` and get copied into each
-plugin's `skills/` folder:
+Work on `main`. On every push to `main`, the **Build** GitHub Action copies
+`shared/skills/` into each plugin's `skills/` folder and force-pushes the result to the
+`build` branch. Both marketplaces install their plugin from `build`, so merging to `main`
+publishes. Never commit to `build` by hand.
 
-- **Shared skill:** edit it in `shared/skills/<name>/`, then run `scripts/sync-shared.sh`
-  and commit the copies too. Never edit the copies inside `plugins/`; CI fails if they
-  differ from `shared/`.
-- **Platform-specific skill:** put it directly in `plugins/claude/skills/<name>/` or
-  `plugins/chatgpt/skills/<name>/`. Don't reuse a shared skill's name, or the sync will
-  overwrite it.
+- **Skill for both platforms:** add it to `shared/skills/<name>/`.
+- **Skill for one platform:** add it to `plugins/<platform>/skills/<name>/`. Use a name
+  that isn't in `shared/skills/`, or the shared skill overwrites it.
 
-Shared skills should avoid naming a specific assistant. When a step differs by platform,
-say so inline, for example "If you're running in Claude Code, …".
+Shared skills shouldn't name a specific assistant. When a step differs by platform, say so
+inline, for example "If you're running in Claude Code, …".
