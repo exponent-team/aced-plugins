@@ -1,0 +1,15 @@
+{
+  "name": "aced-plugins",
+  "description": "Official Aced plugins for interview prep with Claude.",
+  "owner": {
+    "name": "Aced",
+    "url": "https://www.aced.io"
+  },
+  "plugins": [
+    {
+      "name": "aced",
+      "source": "./plugins/aced",
+      "description": "Prep for interviews with real questions, candidate reports and expert guides from Aced."
+    }
+  ]
+}

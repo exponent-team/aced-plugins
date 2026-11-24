@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "aced": {
+      "type": "http",
+      "url": "https://www.aced.io/api/mcp"
+    }
+  }
+}
