@@ -172,7 +172,7 @@ or interviewed at, skills and rating.
 - Up to 3 recent unlocked interview reports, from the target company first, then from peers.
 
 **Don't fetch locked items yet.** Results marked `locked: true` are for Aced members.
-Fetching one when the user isn't signed in makes Claude stop and ask them to sign in,
+Fetching one when the user isn't signed in pauses the conversation to ask them to sign in,
 which interrupts the research before they've seen anything. So skip locked items here,
 keep track of them (title, link, and why they matter, such as "the Adobe PM guide"), and
 put them in the plan as 🔒. Step 4 offers to unlock them. Links in
@@ -248,8 +248,8 @@ End with one short offer, not a list of options.
 
 If they say yes:
 
-1. Tell them what to expect: "Click **Connect** when it appears. In Claude Code, run `/mcp`
-   and choose aced."
+1. Tell them what to expect: "Click **Connect** when it appears." If you're running in
+   Claude Code, add: "Or run `/mcp` and choose aced."
 2. `fetch` the most valuable locked item. This is what brings up the sign-in prompt.
 3. What happens next depends on the result:
    - **The content comes back.** They're a member. Fetch the other locked items, then update
