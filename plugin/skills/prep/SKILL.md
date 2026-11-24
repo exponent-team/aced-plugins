@@ -1,5 +1,5 @@
 ---
-name: prep-from-jd
+name: prep
 description: Turn a job description into an interview study plan built from real Aced data, including questions candidates reported, verified interview experiences and expert guides, with every claim linked to its source. Use when the user pastes a job description or job posting URL, says they have an interview coming up at a company, or asks how to prepare for a specific role at a specific company.
 ---
 
@@ -68,15 +68,11 @@ Extract these:
 | 4–6 core requirements | API platform experience, SQL, cross-functional leadership… |
 | Interview date or timeline, if the user mentioned it | "onsite in 10 days" |
 
-Then resolve the company and role to Aced tags before calling anything else:
-
-- `list_tags(kind: "company", query: "<company>")`. There are hundreds of companies, so
-  always pass `query`. If nothing matches, try a shorter or alternative name, for example
-  "Meta" for "Facebook".
-- `list_tags(kind: "role", limit: 200)` and pick the closest role to the job title. For example,
-  "Senior PM, Payments" becomes the Product Manager tag.
-- Use the tag names or IDs you get back in every later call. If the company isn't on Aced,
-  build the plan from similar companies and role-level content (Step 2b).
+Pass the company's common name and the role family, not the full job title: "Stripe" and
+"Product Manager" for "Senior PM, Payments Infrastructure at Stripe, Inc.". If a tool says
+Aced has no company or role by that name, try another name for it, such as "Meta" for
+"Facebook". If the company isn't on Aced, build the plan from similar companies and
+role-level content (Step 2b).
 
 Show the extracted details to the user in 3–4 short lines, marking anything inferred, then
 carry on. Don't stop to ask for confirmation unless the company or role is unclear.
@@ -84,7 +80,7 @@ carry on. Don't stop to ask for confirmation unless the company or role is uncle
 ### If the posting is closed or filled
 
 If the page says something like "this job has been filled" or "no longer accepting
-applications", resolve the tags, then call
+applications", call
 `list_jobs(company, role, level)` to find open alternatives. If that returns nothing, drop
 `company` and try again with just the role and level. Then stop and ask the user:
 
@@ -132,7 +128,7 @@ stop once you have enough for a solid plan:
    domain, product type, size and hiring style. For an Adobe PM, that might be other large
    B2B and creative software companies such as Microsoft, Salesforce, Autodesk or Intuit.
    For new-grad or MBA roles, prefer companies with structured early-career PM programs.
-   Resolve each peer with `list_tags`, call `interview_overview(peer, role)`, and keep
+   Call `interview_overview(peer, role)` for each, and keep
    the peers that have data. In the plan, say in one line which peers you used and why,
    for example "Microsoft and Salesforce PM loops, since they hire MBA PMs for similar
    B2B software."
@@ -148,8 +144,8 @@ stop once you have enough for a solid plan:
 1. `list_questions(company, role)`, the questions tagged for this company and role,
    most popular first.
 2. For each of the top interview types from `interview_overview`, call
-   `list_questions(company, role, type)` so every stage has questions. If you need a type
-   name, look it up with `list_tags(kind: "type")`.
+   `list_questions(company, role, type)` so every stage has questions, using the type names
+   `interview_overview` returned.
 3. If you still have fewer than 6, widen: `list_questions(company)` for any role, then
    `list_questions(peer, role)`, then `list_questions(role, type)` across all companies.
 
@@ -172,7 +168,7 @@ or interviewed at, skills and rating.
 - Up to 3 recent unlocked interview reports, from the target company first, then from peers.
 
 **Don't fetch locked items yet.** Results marked `locked: true` are for Aced members.
-Fetching one when the user isn't signed in makes Claude stop and ask them to sign in,
+Fetching one when the user isn't signed in pauses the conversation to ask them to sign in,
 which interrupts the research before they've seen anything. So skip locked items here,
 keep track of them (title, link, and why they matter, such as "the Adobe PM guide"), and
 put them in the plan as 🔒. Step 4 offers to unlock them. Links in
@@ -248,8 +244,8 @@ End with one short offer, not a list of options.
 
 If they say yes:
 
-1. Tell them what to expect: "Click **Connect** when it appears. In Claude Code, run `/mcp`
-   and choose aced."
+1. Tell them what to expect: "Click **Connect** when it appears." If you're running in
+   Claude Code, add: "Or run `/mcp` and choose aced."
 2. `fetch` the most valuable locked item. This is what brings up the sign-in prompt.
 3. What happens next depends on the result:
    - **The content comes back.** They're a member. Fetch the other locked items, then update
@@ -266,13 +262,13 @@ If they say no, don't bring it up again.
 **If nothing is locked, or after unlocking,** offer a mock interview instead. For example:
 "Want to start with a mock interview? I'll ask you one of the questions above and give
 you feedback against the model answer." If they say yes, ask one of the plan's top
-questions, or call `practice_question(company, role, type)` for a fresh one. Wait for their
+questions, or one from `list_questions(company, role, type)` they haven't seen. Wait for their
 answer before revealing anything, then `fetch` the question and its `modelAnswer.id` to
 compare. If the model answer is locked, use the unlock flow above.
 
 ## Checks before you send
 
-- Company, role and type filters came from `list_tags`, not guesses.
+- Company, role and type names are the ones the tools returned, not guesses.
 - Every question has a link that came from a tool result.
 - Anything taken from a peer company or from role-level content is labeled that way.
 - Every number matches the tool output exactly.
