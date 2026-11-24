@@ -9,7 +9,7 @@ its source on Aced, so you know you're practicing with real questions.
 
 | Skill | Use it when |
 |---|---|
-| `prep-from-jd` | You have a job description. Paste it in, or paste the posting URL, and get a study plan for that company and role, built from Aced data with every source linked. |
+| `prep` | You have a job description. Paste it in, or paste the posting URL, and get a study plan for that company and role, built from Aced data with every source linked. |
 
 ## Install
 

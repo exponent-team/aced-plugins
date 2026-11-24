@@ -1,5 +1,5 @@
 ---
-name: prep-from-jd
+name: prep
 description: Turn a job description into an interview study plan built from real Aced data, including questions candidates reported, verified interview experiences and expert guides, with every claim linked to its source. Use when the user pastes a job description or job posting URL, says they have an interview coming up at a company, or asks how to prepare for a specific role at a specific company.
 ---
 
