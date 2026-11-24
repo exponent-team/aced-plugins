@@ -11,8 +11,7 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/exponent-team/aced-plugins.git",
-        "ref": "build",
-        "path": "plugins/claude"
+        "path": "plugin"
       },
       "description": "Prep for interviews with real questions, candidate reports and expert guides from Aced."
     }

@@ -9,8 +9,7 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/exponent-team/aced-plugins.git",
-        "ref": "build",
-        "path": "plugins/chatgpt"
+        "path": "plugin"
       },
       "policy": {
         "installation": "AVAILABLE",

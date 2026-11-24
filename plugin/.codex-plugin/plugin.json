@@ -1,0 +1,38 @@
+{
+  "name": "aced",
+  "version": "0.1.0",
+  "description": "Prep for interviews with Aced: turn a job description into a study plan built from real interview questions, verified candidate reports and expert guides, with every claim linked to its source.",
+  "author": {
+    "name": "Aced",
+    "url": "https://www.aced.io"
+  },
+  "homepage": "https://www.aced.io",
+  "repository": "https://github.com/exponent-team/aced-plugins",
+  "keywords": [
+    "interview prep",
+    "job search",
+    "careers",
+    "mock interview"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex-plugin/mcp.json",
+  "interface": {
+    "displayName": "Aced",
+    "shortDescription": "Interview prep from real questions, candidate reports and expert guides.",
+    "longDescription": "Paste a job description or posting URL and get a study plan for that company and role, built from Aced's interview data with every source linked.",
+    "developerName": "Aced",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://www.aced.io",
+    "privacyPolicyURL": "https://www.aced.io/privacy",
+    "termsOfServiceURL": "https://www.aced.io/tos",
+    "defaultPrompt": [
+      "Here's the JD for a job I'm interviewing for: [paste]. Help me prep."
+    ],
+    "brandColor": "#6E2BF0",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.png"
+  }
+}

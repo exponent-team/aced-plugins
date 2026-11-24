@@ -7,11 +7,19 @@
     "url": "https://www.aced.io"
   },
   "homepage": "https://www.aced.io",
+  "privacyPolicyUrl": "https://www.aced.io/privacy",
+  "icon": "./assets/icon.png",
   "repository": "https://github.com/exponent-team/aced-plugins",
   "keywords": [
     "interview prep",
     "job search",
     "careers",
     "mock interview"
-  ]
+  ],
+  "mcpServers": {
+    "aced": {
+      "type": "http",
+      "url": "https://www.aced.io/api/mcp"
+    }
+  }
 }

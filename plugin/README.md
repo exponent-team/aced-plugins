@@ -1,9 +1,9 @@
-# Aced for ChatGPT
+# Aced
 
-Prep for interviews with [Aced](https://www.aced.io) inside ChatGPT and Codex. The plugin
-connects to Aced's interview data: real questions that candidates reported, verified
-interview experiences, expert-written company guides, and courses. Every answer links back
-to its source on Aced, so you know you're practicing with real questions.
+Prep for interviews with [Aced](https://www.aced.io) inside Claude, ChatGPT and Codex. The
+plugin connects to Aced's interview data: real questions that candidates reported, verified
+interview experiences, expert-written company guides, and courses. Every answer links back to
+its source on Aced, so you know you're practicing with real questions.
 
 ## What it does
 
@@ -13,7 +13,17 @@ to its source on Aced, so you know you're practicing with real questions.
 
 ## Install
 
-Add the marketplace in Codex:
+**Claude Code:**
+
+```
+/plugin marketplace add exponent-team/aced-plugins
+/plugin install aced@aced-plugins
+```
+
+**claude.ai or Cowork:** go to **Customize > Plugins > Add > Add marketplace** and enter
+`exponent-team/aced-plugins`.
+
+**Codex:**
 
 ```
 codex plugin marketplace add exponent-team/aced-plugins
