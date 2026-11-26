@@ -7,6 +7,7 @@
     "url": "https://www.aced.io"
   },
   "homepage": "https://www.aced.io",
+  "license": "MIT",
   "repository": "https://github.com/exponent-team/aced-plugins",
   "keywords": [
     "interview prep",

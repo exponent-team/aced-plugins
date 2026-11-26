@@ -1,5 +1,6 @@
 {
   "name": "aced",
+  "version": "0.1.0",
   "displayName": "Aced",
   "description": "Prep for interviews with Aced: turn a job description into a study plan built from real interview questions, verified candidate reports and expert guides, with every claim linked to its source.",
   "author": {
@@ -7,6 +8,7 @@
     "url": "https://www.aced.io"
   },
   "homepage": "https://www.aced.io",
+  "license": "MIT",
   "privacyPolicyUrl": "https://www.aced.io/privacy",
   "icon": "./assets/icon.png",
   "repository": "https://github.com/exponent-team/aced-plugins",
