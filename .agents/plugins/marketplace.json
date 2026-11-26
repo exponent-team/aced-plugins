@@ -9,7 +9,8 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/exponent-team/aced-plugins.git",
-        "path": "plugin"
+        "path": "plugin",
+        "ref": "main"
       },
       "policy": {
         "installation": "AVAILABLE",

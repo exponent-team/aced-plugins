@@ -19,7 +19,7 @@
   "mcpServers": "./.codex-plugin/mcp.json",
   "interface": {
     "displayName": "Aced",
-    "shortDescription": "Interview prep from real questions, candidate reports and expert guides.",
+    "shortDescription": "Interview prep from real data",
     "longDescription": "Paste a job description or posting URL and get a study plan for that company and role, built from Aced's interview data with every source linked.",
     "developerName": "Aced",
     "category": "Productivity",
